@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Mvc_okul_Veritabani.Models.Ogrenciler>
+
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>tum_ogrenciler</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Yeni Öğrenci", "ogrenci_kaydet",null,new {@class="btn btn-success"})
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Öğrenci No
+            </th>
+            <th>
+                Öğrenci Adı
+            </th>
+            <th>
+                Doğum Tarihi
+            </th>
+            <th>
+                TC kimlik
+            </th>
+            <th>
+                Adres
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Sınıf Adı
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.og_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.og_ad_soyad)
+        </td>
+        <td>
+            @item.dog_tar.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tc_kimlik)
+        </td>
+        <td>
+            @item.adres
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.siniflar.sinif_adi)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "ogrenci_guncelle", new { id = item.og_no },new{@class = "btn btn-primary"}) |
+            @Html.ActionLink("Sil", "ogrenci_sil", new { id = item.og_no }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+    }
+    
+    </table>
+</body>
+</html>

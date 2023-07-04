@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Mvc_okul_Veritabani.Models.Ogrenciler>
+
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>sinif_bazinda_rapor</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <b>Sınıf Seçiniz:</b>
+    @Html.DropDownList("sinif_adi",null,"Tümü",new {@class="form-control",onchange="this.form.submit()" })
+    }
+    <table class="table  table-hover">
+        <tr>
+            <th>
+                Ad soyad
+            </th>
+            <th>
+                Doğum Tarihi
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tc_kimlik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.siniflar.sinif_adi)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.og_ad_soyad)
+                </td>
+                <td>
+                    @item.dog_tar.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tc_kimlik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.siniflar.sinif_adi)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

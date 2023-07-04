@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Mvc_okul_Veritabani.Models.Notlar>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.yaz1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yaz2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dersler.ders_adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ogrenciler.og_ad_soyad)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.yaz1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yaz2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dersler.ders_adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ogrenciler.og_ad_soyad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.kayit_no }) |
+                @Html.ActionLink("Details", "Details", new { id=item.kayit_no }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.kayit_no })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
